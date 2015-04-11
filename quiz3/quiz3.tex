@@ -1,0 +1,331 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amsmath}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Quiz 3} % Assignment title
+\newcommand{\hmwkDueDate}{Aug 20,\ 2014} % Due date
+\newcommand{\hmwkClass}{Numerical Linear Algebra} % Course/class
+\newcommand{\hmwkClassTime}{6:00 pm} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Lecture time:} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Weiyi Chen} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+%\newpage
+%\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+  Since $Q$ is an orthogonal matrix, then $Q^tQ = I$ or $Q^t = Q^{-1}$, therefore the characteristic polynomial of $Q^tAQ$ is
+  \begin{align}
+    P_{Q^tAQ}(x) &= det(\lambda I - Q^tAQ) \\
+    &= det(Q^t\lambda IQ - Q^tAQ) \\
+    &= det(Q^t (\lambda I - A)Q) \\
+    &= det(Q^t) det(\lambda I - A) det(Q) \\
+    &= det(Q^{-1})det(Q)  det(\lambda I - A) \\
+    &= det(\lambda I - A) = P_{A}(x)
+  \end{align}
+  which is the characteristic polynomial of $A$.
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+  $A$ is positive definite if and only if all of its $n$ leading principal minors are strictly positive. There are four leading principal minors, one of order 1:
+  \begin{equation}
+    \left| a_{11} \right| = 1 > 0
+  \end{equation}
+  one of order 2:
+  \begin{equation}
+    \left| \begin{array} {cc} 
+    a_{11} & a_{12} \\
+    a_{21} & a_{22} 
+    \end{array} \right| = 0.96 > 0
+  \end{equation}
+  one of order 3:
+  \begin{equation}
+    \left| \begin{array} {ccc} 
+    a_{11} & a_{12} & a_{13}\\
+    a_{21} & a_{22} & a_{23}\\
+    a_{31} & a_{32} & a_{33} 
+    \end{array} \right| = 0.8775 > 0
+  \end{equation}
+  one of order 4:
+  \begin{equation}
+    \left| A \right| = 0.853275 > 0
+  \end{equation}
+  Therefore the matrix $A$ is symmetric positive definite.
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+  According to the description of $C_N$,
+  \begin{equation}
+    C_N(i,j) = \begin{cases}
+      1, &\text{ if }i = j\\
+      -1, &\text{ if }i = j-1\\
+      0, &\text{ otherwise }
+    \end{cases}
+  \end{equation}
+  for $1 \le i \le N, 1 \le j \le N+1$. \\
+  For its transpose, $C_N^t(i,j) = C_N(j,i)$ for any $1 \le i \le N+1, 1 \le j \le N$. Therefore,
+  \begin{equation}
+    C_NC_N^t(i,j) = \sum_k C_N(i,k) C_N^t(k,j) = \sum_k C_N(i,k)C_N(j,k)
+  \end{equation}
+  In case $i=j$,
+  \begin{equation}
+    C_NC_N^t(i,j) = \sum_k C_N^2(i,k) = C_N^2(i,i) + C_N^2(i,i+1) = 2
+  \end{equation}
+  In case $i=j+1$,
+  \begin{equation}
+    C_NC_N^t(i,j) = \sum_k C_N(i,k)C_N(i-1,k) = C_N(i,i)C_N(i-1,i) = -1
+  \end{equation}
+  In case $i=j-1$,
+  \begin{equation}
+    C_NC_N^t(i,j) = \sum_k C_N(i,k)C_N(i+1,k) = C_N(i,i+1)C_N(i+1,i+1) = -1
+  \end{equation}
+  Otherwise, $C_NC_N^t(i,j) = 0$ since the inner product (i.e., $\sum_k C_N(i,k)C_N(j,k)$) of any two rows in matrix $C_N$ with index distance greater than $1$ is $0$. Given the entries above, it's exactly $B_N$ given in the condition, so
+  \begin{equation}
+    B_N = C_N C_N^t
+  \end{equation}
+  $C_N$ is not the Choleskey decomposition of the matrix $B_N$ because the Cholesky decomposition is a decomposition of a Hermitian, positive-definite matrix into the product of a lower triangular matrix and its conjugate transpose, where the lower triangular matrix must be a square matrix while $C_N$ is not.
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 4
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+  \begin{homeworkSection}{(i)}
+    A symmetric matrix $A$ is positive definite if and only if there exists a nonsingular matrix $B$ such that $A=B^tB$, then for any column vector $v \neq 0$, we have
+    \begin{equation}
+      v^tM^tAMv=v^tM^tB^tBMv=v^t(BM)^t(BM)v=(BMv)^t\cdot(BMv)\ge0
+    \end{equation}
+    therefore $M^tAM$ is semipositive definite.
+    In addition, $M^tAM$ is symmetric because
+    \begin{equation}
+      (M^tAM)^t = M^t A^t M = M^t A M
+    \end{equation}
+    where $A$ is given symmetric, i.e. $A^t = A$. 
+    In conclude, $M^tAM$ is symmetric semipositive definite.
+  \end{homeworkSection}
+  \begin{homeworkSection}{(ii)}
+    If the columns of the matrix $M$ is linearly independent, then $M$ is nonsingular (i.e. $det(M)\neq0$). $BM$ is also nonsingular, where $B$ is defined in part(i), because
+    \begin{equation}
+      det(BM) = det(B)det(M) \neq 0
+    \end{equation}
+    which implies that the columns of $BM$ are linearly independent. We re-apply the formula in part(i) and find that, for any column vector $v \neq 0$,
+    \begin{equation}
+      v^tM^tAMv = (BMv)^t\cdot(BMv) > 0
+    \end{equation}
+    since any linear combination (i.e. $v$) of columns of $BM$, forming $BMv$ cannot be a zero vector. In conclude, the matrix $M^tAM$ is symmetric positive definite from the formula above. (Symmetry proof is the same as part(i), $(M^tAM)^t = M^t A^t M = M^t A M$.) \\
+    On the other hand, if the matrix $M^tAM$ is symmetric positive definite, then $M^tAM$ is nonsingular. Assume by contradiction that the columns of the matrix $M$ are not linearly independent (i.e.,$det(M) = det(M^t) = 0$), then
+    \begin{equation}
+      det(M^tAM) = det(M^t)det(A)det(M) = 0
+    \end{equation}
+    which contradicts to the fact that $M^tAM$ is nonsingular. So the columns of the matrix $M$ are linearly independent.
+  \end{homeworkSection}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 5
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+  A matrix can be a correlation matrix only if it is symmetric semidefinite with all the entries at the diagonal as $1$. It is easy to verify the matrix given (denote as $A$) is symmetric with all diagonal entries being $1$, for the semidefinite condition, we can check whether all its principle minors are $0$:\\
+  3 of order 1:
+  \begin{equation}
+    \left| a_{11} \right| = \left| a_{22} \right| = \left| a_{33} \right| = 1 > 0
+  \end{equation}
+  3 of order 2:
+  \begin{equation}
+    \left| \begin{array} {cc} 
+    a_{11} & a_{12} \\
+    a_{21} & a_{22} 
+    \end{array} \right| = 0.99 > 0,
+    \left| \begin{array} {cc} 
+    a_{11} & a_{13} \\
+    a_{31} & a_{33} 
+    \end{array} \right| = 0.96 > 0
+    \left| \begin{array} {cc} 
+    a_{22} & a_{23} \\
+    a_{32} & a_{33} 
+    \end{array} \right| = 0.91 > 0
+  \end{equation}
+  1 of order 3:
+  \begin{equation}
+    \left| A \right| = 0.848 > 0
+  \end{equation}
+  Therefore it is a correlation matrix. \\
+  The Cholesky factor of the matrix $A = LL^t$ is 
+  \begin{equation}
+    L = \left( \begin{array} {ccc}
+    1 & 0 & 0 \\
+    0.1 & 0.99498744 & 0 \\
+    0.2 & -0.3216121 & 0.92550832
+    \end{array} \right),
+    L^t = \left( \begin{array} {ccc}
+    1 & 0.1 & 0.2 \\
+    0 & 0.99498744 & -0.3216121 \\
+    0 & 0 & 0.92550832
+    \end{array} \right)   
+  \end{equation}
+  using the formula
+  \begin{equation}
+    L_{kk} = \sqrt{a_{kk} - \sum_{j=1}^{k-1} L_{kj}^2}, L_{ik} = \frac{1}{L_{kk}} \left ( a_{ik} - \sum_{j=1}^{k-1} L_{ij}L_{kj} \right )
+  \end{equation}
+\end{homeworkProblem}
+\end{document}

@@ -1,0 +1,286 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amsmath}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Quiz 4} % Assignment title
+\newcommand{\hmwkDueDate}{Aug 21,\ 2014} % Due date
+\newcommand{\hmwkClass}{Numerical Linear Algebra} % Course/class
+\newcommand{\hmwkClassTime}{6:00 pm} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Lecture time:} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Weiyi Chen} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+%\newpage
+%\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+  Since the linear combination of normal distribution is still normal distribute, we let
+  \begin{equation}
+    X_1 = w_1^t Z = (w_{11}, w_{12})(Z_1, Z_2)^t, X_2 = w_2^t Z = (w_{21}, w_{22})(Z_1, Z_2)^t
+  \end{equation}
+  Then according to the covariance matrix, we have
+  \begin{align}
+    var(X_1) &= w_{11}^2 + w_{12}^2 = w_1^2 = 4 \\
+    var(X_2) &= w_{21}^2 + w_{22}^2 = w_2^2 = 9 \\
+    cov(X_1, X_2) &= w_{11}w_{21} + w_{21}w_{22} = w_1^tw_2 =  -1 
+  \end{align}
+  where $w_1 = (w_{11},w_{12})^t$, $w_2 = (w_{21},w_{22})^t$. Let $W = col(w_i)$ for $i=1,2$, then
+  \begin{equation}
+    W^tW = \left( \begin{array} {cc}
+    w_{11} & w_{12} \\
+    w_{21} & w_{22}
+    \end{array} \right) \left( \begin{array} {cc}
+    w_{11} & w_{21} \\
+    w_{12} & w_{22} 
+    \end{array} \right) = \left( \begin{array} {cc} 
+    4 & -1 \\
+    -1 & 9
+    \end{array} \right)
+  \end{equation}
+  One solution is just apply Cholesky decomposition (which implies $w_{12}=0$), we get
+  \begin{equation}
+    W = \left( \begin{array} {cc}
+    2 & -0.5 \\
+    0 & 2.95803989
+    \end{array} \right)
+  \end{equation}
+  Therefore $X_1 = 2Z_1$ and $X_2 = -0.5Z_1 + 2.95803989Z_2$ is a possible pair of normal variables satisfying the covariance matrix.
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+  Similarly to last problem, let
+  \begin{equation}
+    W = \left(\begin{array} {ccc} 
+    w_{11} & w_{12} & w_{13} \\
+    w_{21} & w_{22} & w_{23} \\
+    w_{31} & w_{32} & w_{33}
+    \end{array} \right)
+  \end{equation}
+  satisfying $WZ = W(Z_1, Z_2, Z_3)^t = (X_1, X_2, X_3)^t$. Then the covariance matrix and the correlation matrix are 
+  \begin{equation}
+    \Sigma_X = WW^t, \Omega_X = D_{\sigma_X}^{-1}\Sigma_XD_{\sigma_X}^{-1}
+  \end{equation}
+  where
+  \begin{equation}
+    D_{\sigma_X}^{-1} = diag(\Sigma_X)^{-1} = diag(|w_1|, |w_2|, |w_3|)^{-1}
+  \end{equation}
+  with $w_i = (w_{i1}, w_{i2}, w_{i3})^t$ and $|w_i| = (w_{i1}^2 + w_{i2}^2 + w_{i3}^2)^{1/2}$. \\
+  Since $(D_{\sigma_X}^{-1})^t = D_{\sigma_X}^{-1}$, then
+  \begin{equation}
+    \Omega_X = D_{\sigma_X}^{-1}\Sigma_XD_{\sigma_X}^{-1} = (W^tD_{\sigma_X}^{-1})^t(W^tD_{\sigma_X}^{-1})
+  \end{equation}
+  where
+  \begin{equation}
+    W^tD_{\sigma_X}^{-1} = col(w_i)_{i=1:3}diag(|w_i|^{-1})_{i=1:3} = col(\frac{w_i}{|w_i|})_{i=1:3}
+  \end{equation}
+  Again we apply Cholesky decomposition to derive $W^tD_{\sigma_X}^{-1}$ since we are given $\Omega_X$, the result is
+  \begin{equation}
+    W^tD_{\sigma_X}^{-1} = \left(\begin{array}{ccc} 
+    1 & 0.3 & 0.4 \\
+    0 & 0.9539392 & 0.39834824 \\
+    0 & 0 & 0.82542031
+    \end{array} \right)
+  \end{equation}
+  One solution of $W$ is just take the values above since $D_{\sigma_X}^{-1}$ is just to normalize each columns of $W^t$. In other words,
+  \begin{equation}
+    W^t = 
+    \left(\begin{array}{ccc}
+    w_{11} & w_{21} & w_{31} \\
+    w_{12} & w_{22} & w_{32} \\
+    w_{13} & w_{23} & w_{33}
+    \end{array} \right) =
+    \left(\begin{array}{ccc}
+    1 & 0.3 & 0.4 \\
+    0 & 0.9539392 & 0.39834824 \\
+    0 & 0 & 0.82542031
+    \end{array} \right)
+  \end{equation}
+  Therefore
+  \begin{align}
+    X_1 &= Z_1 \\ 
+    X_2 &= 0.3Z_1 + 0.9539392Z_2 \\
+    X_3 &= 0.4Z_1 + 0.39834824Z_2 + 0.82542031Z_3
+  \end{align}
+  is a possible combination of normal variables satisfying the given correlation matrix.
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+  According to the distribution of the 3-dimensional multivariate normal random variable,
+  \begin{equation}
+    X_1+2X_2+3X_3 \sim N \left( 1-4+3, (1,2,3) \left( \begin{array} {ccc}
+    1 & -1 & 0\\
+    -1 & 3 & -2 \\
+    0 & -2 & 3
+    \end{array} \right) \left( \begin{array} {c}
+    1 \\
+    2 \\
+    3
+    \end{array} \right)
+    \right)
+  \end{equation}
+  or
+  \begin{equation} 
+    X_1+2X_2+3X_3 \sim N(0,12) 
+  \end{equation}
+  Therefore the probability that $X_1+2X_2+3X_3$ is positive is $p = 0.5$.
+\end{homeworkProblem}
+
+\end{document}

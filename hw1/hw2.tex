@@ -1,0 +1,1061 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amsmath}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Homework 1} % Assignment title
+\newcommand{\hmwkDueDate}{Aug 18,\ 2014} % Due date
+\newcommand{\hmwkClass}{Numerical Linear Algebra} % Course/class
+\newcommand{\hmwkClassTime}{6:00 pm} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Lecture time:} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Weiyi Chen} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+%\newpage
+%\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    \begin{homeworkSection}{(i)}
+        Suppose $A$ is an invertible square matrix and $u, v$ are vectors. Suppose furthermore that $1 + v^T A^{-1}u \neq 0$. Then the Sherman–Morrison formula states that
+        \begin{equation}
+            (A+uv^T)^{-1} = A^{-1} - {A^{-1}uv^T A^{-1} \over 1 + v^T A^{-1}u}.
+        \end{equation}
+        Here, $uv^T$ is the outer product of two vectors $u$ and $v$.
+        \textbf{Proof. } We verify the properties of the inverse. A matrix $Y$ (in this case the right-hand side of the Sherman–Morrison formula) is the inverse of a matrix $X$ (in this case $A+uv^T$) if and only if $XY = YX = I$. \\
+        We first verify that the right hand side (Y) satisfies XY = I.
+        \begin{align}
+            XY &= (A + uv^T)\left( A^{-1} - {A^{-1} uv^T A^{-1} \over 1 + v^T A^{-1}u}\right) \\
+            &= AA^{-1} +  uv^T A^{-1} - {AA^{-1}uv^T A^{-1} + uv^T A^{-1}uv^T A^{-1} \over 1 + v^TA^{-1}u} \\
+            &= I +  uv^T A^{-1} - {uv^T A^{-1} + uv^T A^{-1}uv^T A^{-1} \over 1 + v^T A^{-1}u} \\
+            &= I + uv^T A^{-1} - {u(1 + v^T A^{-1}u) v^T A^{-1} \over 1 + v^T A^{-1}u}
+        \end{align}
+        Note that $v^T A^{-1}u$ is a scalar, so $(1+v^T A^{-1}u)$ can be factored out, leading to:
+        \begin{equation}
+            XY= I + uv^T A^{-1} - uv^T A^{-1} = I.\,
+        \end{equation}
+        In the same way, it is verified that
+        \begin{equation}
+            YX = \left(A^{-1} - {A^{-1}uv^T A^{-1} \over 1 + v^T A^{-1}u}\right)(A + uv^T) = I.
+        \end{equation}
+        In our problem, let $A=I, u=x, v=y$, we have
+        \begin{equation}
+            (I+xy^t)^{-1} = I - {xy^t \over 1 + y^tx}
+        \end{equation}
+    \end{homeworkSection}
+    \begin{homeworkSection}{(ii)}
+        We have proved one direction, the other direction is to prove if $y^tx=-1$ then the matrix $I+xy^t$ is singular. \\
+        Assume by contradiction that $I+xy^t$ is nonsingular, then
+        \begin{equation}
+            AA = (I+xy^t)(I+xy^t) = I + xy^t + xy^t + xy^t xy^t = I + xy^t = A
+        \end{equation}
+        Since $A$ is nonsingular, there exist $A^-1$, therefore
+        \begin{equation}
+            AA = A \Rightarrow AAA^{-1} = AA^{-1} \Rightarrow A=I \Rightarrow xy^t = 0
+        \end{equation}
+        which implies $\sum_i x_i y_i = 0$, however $y^tx = \sum_i x_i y_i = 0$ contradicts to the condition $y^tx = -1$. So the matrix $I+xy^t$ is singular.
+    \end{homeworkSection}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    \begin{homeworkSection}{(i)}
+        When $n=1$, obviously $A_1^t = A_1^t$. \\
+        Suppose when $n = k$ for $k \ge 1$, it satisfies the equation
+        \begin{equation}
+            (\prod_{i=1}^k A_i)^t = \prod_{i=1}^k A_{k+1-i}^t
+        \end{equation}
+        When $n=k+1$,
+        \begin{equation}
+            (\prod_{i=1}^{k+1} A_i)^t = ((\prod_{i=1}^{k} A_i) A_{k+1})^t = A_{k+1}^t (\prod_{i=1}^k A_i)^t = A_{k+1}^t \prod_{i=1}^k A_{k+1-i}^t =\prod_{i=1}^{k+1} A_{k+1-i}^t
+        \end{equation}
+        satisfying the given formula.
+    \end{homeworkSection}
+    \begin{homeworkSection}{(ii)}
+        Similar to the proof above, the inverse of matrix also satisfies the equation
+        \begin{equation}
+            (AB)^{-1} = B^{-1}A^{-1}
+        \end{equation}
+        similar to the transpose $(AB)^{t} = B^{t}A^{t}$, the reason is illustrated as follows, the inverse of a product $AB$ of matrices $A$ and $B$ can be expressed in terms of $A^{-1}$ and $B^{-1}$. Let $C=AB$. Then
+        \begin{equation}
+            B=A^{-1}AB=A^{-1}C 
+        \end{equation}    
+        and
+        \begin{equation}
+            A=ABB^{-1}=CB^{-1}
+        \end{equation}   
+        Therefore,
+        \begin{equation}
+            C=AB=(CB^{-1})(A^{-1}C)=CB^{-1}A^{-1}C,    
+        \end{equation}
+        so
+        \begin{equation}
+            CB^{-1}A^{-1}=I,  
+        \end{equation}
+        where $I$ is the identity matrix, and
+        \begin{equation}
+            B^{-1}A^{-1}=C^{-1}=(AB)^{-1}
+        \end{equation}
+        Now we use induction to prove. When $n=1$, obviously $A_1^{-1} = A_1^{-1}$. \\
+        Suppose when $n = k$ for $k \ge 1$, it satisfies the equation
+        \begin{equation}
+            (\prod_{i=1}^k A_i)^{-1} = \prod_{i=1}^k A_{k+1-i}^{-1}
+        \end{equation}
+        When $n=k+1$,
+        \begin{equation}
+            (\prod_{i=1}^{k+1} A_i)^{-1} = ((\prod_{i=1}^{k} A_i) A_{k+1})^{-1} = A_{k+1}^{-1} (\prod_{i=1}^k A_i)^{-1} = A_{k+1}^{-1} \prod_{i=1}^k A_{k+1-i}^{-1} =\prod_{i=1}^{k+1} A_{k+1-i}^{-1}
+        \end{equation}
+        satisfying the given formula.
+    \end{homeworkSection}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    \begin{homeworkSection}{(i)}
+        The result is
+        \begin{equation}
+            B^2 = \left( \begin{array} {cccc}
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+            -3 & 0 & 0 & 0 \\
+            7 & -1 & 0 & 0
+            \end{array}
+            \right),
+            B^3 = \left( \begin{array} {cccc}
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+            -3 & 0 & 0 & 0
+            \end{array}
+            \right),
+            B^4 = \left( \begin{array} {cccc}
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0
+            \end{array}
+            \right) 
+        \end{equation}
+    \end{homeworkSection}
+    \begin{homeworkSection}{(ii)}
+        According to the hint, the result is 
+        \begin{equation}
+            C^2 = \left( \begin{array} {cccc}
+            1 & 0 & 0 & 0 \\
+            6 & 1 & 0 & 0 \\
+            -1 & -2 & 1 & 0 \\
+            5 & 3 & 2 & 1
+            \end{array}
+            \right),
+            C^3 = \left( \begin{array} {cccc}
+            1 & 0 & 0 & 0 \\
+            9 & 1 & 0 & 0 \\
+            -6 & -3 & 1 & 0 \\
+            15 & 3 & 3 & 1
+            \end{array}
+            \right),
+            C^4 = \left( \begin{array} {cccc}
+            1 & 0 & 0 & 0 \\
+            12 & 1 & 0 & 0 \\
+            -14 & -4 & 1 & 0 \\
+            26 & 2 & 4 & 1
+            \end{array}
+            \right) 
+        \end{equation}
+        In general (if $m\ge3$),
+        \begin{equation}
+            C^m = \sum_{j=0}^m {m\choose j} B^{m-j} = I + mB + \frac{m(m-1)}{2}B^2 + \frac{m(m-1)(m-2)}{6}B^3
+        \end{equation}
+        where $B,B^2,B^3$ are given in part(i) and $B_i=0$ for $i\ge4$.
+    \end{homeworkSection}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 4
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    \begin{homeworkSection}{(i)}
+        We will prove by induction that
+        \begin{equation}
+            L^m(i,j) = 0
+        \end{equation}
+        for any $1 \le i \le j+(m-1) \le n$. \\
+        When $m=1$, obviously it is true since we are given
+        \begin{equation}
+            L(i,j) = 0
+        \end{equation}
+        for any $1 \le i \le j \le n$. \\
+        When $m=2$,
+        \begin{equation}
+            L^2(i,j) = \sum_{k=1}^n L(i,k)L(k,j) = 0
+        \end{equation}
+        for any $1 \le i \le j+1 \le n$,
+        since $L(i,j) = 0$ when $k \ge i$ and $L(k,j) = 0$ when $k \le j$. \\
+        Now suppose the formula holds when $m = K$, let's consider case $m = K+1$ when $i \le j+K$,
+        \begin{equation}
+            L^{K+1}(i,j) = \sum_{k=1}^n L^{K}(i,k)L(k,j) = \sum_{k=1}^j L(k,j)L^{K}(i,k) + \sum_{k=j+1}^n L^{K}(i,k)L(k,j)
+        \end{equation}
+        Note that $L(k,j) = 0$ when $k \le j$ and
+        \begin{equation}
+            L^{K}(i,k) = 0
+        \end{equation}
+        when $i \le k+(K-1)$. Note that $j+1 \ge (i-K)+1 = i - (K-1) \ge k$, so the equation above holds when $k$ iterate from $j+1$ to $n$, that is
+        \begin{equation}
+            L^{K+1}(i,j) = \sum_{k=1}^j L(k,j)L^{K}(i,k) + \sum_{k=j+1}^n L^{K}(i,k)L(k,j) = \sum_{k=1}^j 0L^{K}(i,k) + \sum_{k=j+1}^n 0L(k,j) = 0
+        \end{equation}
+        We finish the proof. Now just let $m = n$, we find that 
+        \begin{equation}
+            L^n(i,j) = 0
+        \end{equation}
+        for any $1 \le i \le j+(n-1) \le n$ which implies all entries of $L^n$ are 0, $L^n = 0$.
+    \end{homeworkSection}
+    \begin{homeworkSection}{(ii)}
+        Since $L^k = 0$ for $k \ge n$,
+        \begin{equation}
+            (1+L)^m = \sum_{j=0}^m {m\choose j} B^{j} = \sum_{j=0}^{n-1} {m\choose j} B^j
+        \end{equation}
+        where $m \ge n$.
+    \end{homeworkSection}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 5
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    Let $A = L_1U_1 = L_2U_2$, decomposite $L_1$ as
+    \begin{equation}
+        L_1 = LD_1
+    \end{equation}
+    where $L$ is a unit lower triangle matrix and $D_1$ is a diagonal matrix, with their entries as
+    \begin{equation}
+        L(i,j) = \frac{L_1(i,j)}{L_1(j,j)}, D_1(i,i) = L_1(i,i)
+    \end{equation}
+    for $i=1:n,j=1:n$. Note that $L_1(j,j) \neq 0$ since $L_1$ is nonsingular, otherwise $det(L_1) = \prod_i L_1(i,i) = 0$. In the same way we have
+    \begin{equation}
+        L_2 = L'D_2
+    \end{equation}
+    where
+    \begin{equation}
+        L'(i,j) = \frac{L_2(i,j)}{L_2(j,j)}, D_2(i,i) = L_2(i,i)
+    \end{equation}
+    According to the uniqueness property of LU-decomposition: if a non-singular matrix A has an LU-factorization in which L is a unit lower triangular matrix, then L and U are unique. In our case,
+    \begin{equation}
+        L = L', U = D_1U_1 = D_2U_2
+    \end{equation}
+    is the unique LU-decomposition of $A$. Therefore we obtain the $D$ indicated in the problem,
+    \begin{equation}
+        L_2 = L'D_2 = LD_2 = L_1D_1^{-1}D_2 = L_1 (D_2^{-1}D_1)^{-1}, U_2 = D_2^{-1}D_1U_1
+    \end{equation}
+    so $D = D_2^{-1}D_1$. It is easy to verify that $D$ is nonsingular and diagonal because both $D_1$ and $D_2$ are nonsingular and diagonal.
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 6
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    Denote $C = AB$, according to the definition,
+    \begin{equation}
+        C(i,j) = \sum_k A(i,k)B(k,j)
+    \end{equation}
+    Obviously all entries of $C$ are nonnegative since all entries of $A,B$ are nonnegative. Furthermore, the sum of the entries in any row $i$:
+    \begin{equation}
+        \sum_j C(i,j) = \sum_j \sum_k A(i,k)B(k,j) = \sum_k \left( A(i,k) \sum_j B(k,j)\right) = \sum_k A(i,k) = 1
+    \end{equation}
+    Therefore the matrix $C=AB$ has the same property.
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 7
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    \begin{align}
+        det\left(\begin{array} {ccc}
+        1 & a & a^2 \\
+        1 & b & b^2 \\
+        1 & c & c^2
+        \end{array}
+        \right) 
+        &=
+        det\left(\begin{array} {ccc}
+        1 & a & a^2 \\
+        0 & b-a & b^2-a^2 \\
+        0 & c-a & c^2-a^2
+        \end{array}
+        \right) \\
+        &=
+        (b-a)(c-a)det\left(\begin{array} {ccc}
+        1 & a & a^2 \\
+        0 & 1 & b+a \\
+        0 & 1 & c+a
+        \end{array}
+        \right) \\
+        &=
+        (b-a)(c-a)det\left(\begin{array} {ccc}
+        1 & a & a^2 \\
+        0 & 1 & b+a \\
+        0 & 0 & c-b
+        \end{array}
+        \right) \\
+        &= (b-a)(c-a)(c-b)
+    \end{align}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 8
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    \begin{homeworkSection}{(i)}
+        The correlation matrix is
+        \begin{equation}
+            \Omega = D^{-1} \Sigma D^{-1} = \left(
+            \begin{array} {ccccc}
+            1. &  -0.35 & 0.55 & -0.15 & -0.25\\
+            -0.35 & 1. & 0.05 & 0.25 & -0.15\\
+            0.55 & 0.05 & 1.  &  0.35 & -0.25\\
+            -0.15 & 0.25 & 0.35 & 1. & 0.2 \\
+            -0.25 & -0.15 & -0.25 & 0.2 & 1.
+            \end{array}
+            \right)
+        \end{equation}
+        where
+        \begin{equation}
+            D = diag(\sqrt{\Sigma(i,i)})_{i=1:n} = \left( 
+            \begin{array} {ccccc}
+                1. &  0. &  0. &  0. &  0. \\
+                0. &  1.5&  0. &  0. &  0. \\
+                0. &  0. &  2.5&  0. &  0. \\
+                0. &  0. &  0. &  0.5&  0. \\
+                0. &  0. &  0. &  0. &  3.
+            \end{array}
+            \right)
+        \end{equation}
+    \end{homeworkSection}
+    \begin{homeworkSection}{(ii)-(i)}
+        The covariance matrix is
+        \begin{equation}
+            \Sigma = D \Omega D
+        \end{equation}
+        where $D = diag(\sqrt{\Sigma(i,i)})_{i=1:n}$. The result printed out from python is
+        \begin{lstlisting}
+[[  0.0625   -0.03125   0.0375   -0.025    -0.3    ]
+ [ -0.03125   0.25     -0.05     -0.25      0.2    ]
+ [  0.0375   -0.05      1.        0.4       0.2    ]
+ [ -0.025    -0.25      0.4       4.       -0.8    ]
+ [ -0.3       0.2       0.2      -0.8      16.     ]]
+        \end{lstlisting}
+    \end{homeworkSection}
+    \begin{homeworkSection}{(ii)-(ii)}
+        Similarly, the printed result is
+        \begin{lstlisting}
+[[  16.  -2.    0.6     -0.1     -0.3]
+ [ -2.    4.   -0.2     -0.25     0.05]
+ [  0.6  -0.2   1.       0.1      0.0125]
+ [ -0.1  -0.25  0.1      0.25    -0.0125]
+ [ -0.3   0.05  0.0125  -0.0125   0.0625]]
+        \end{lstlisting}
+    \end{homeworkSection}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 9
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    Following is my code to compute the covariance and correlation matrices in different cases.
+    \begin{lstlisting}
+def corr_given_cov(mat_cov):
+    mat_D = np.diag(np.sqrt(np.diag(mat_cov)))
+    mat_corr = inv(mat_D) * mat_cov * inv(mat_D)
+    return mat_corr
+
+def corr_and_cov_of_percent_ret_given_file(filename='indices-july2011.csv', delta_time=1, b_log = False):
+    df_price = pd.read_csv(filename)
+    del df_price['Date']
+    if b_log == False:
+        df_rets = df_price.shift(-delta_time) / df_price - 1
+    else:
+        df_rets = np.log(df_price.shift(-delta_time) / df_price)
+    if delta_time > 1:
+        df_rets = df_rets.drop(df_rets.index[-delta_time:-1])
+    df_rets = df_rets.drop(df_rets.index[-1])
+    df_norm = df_rets - df_rets.mean()
+    N = df_norm.shape[0]
+    mat_norm = np.matrix(df_norm)
+    mat_cov = 1.0/(N-1) * mat_norm.transpose() * mat_norm
+    mat_corr = corr_given_cov(mat_cov)
+    return mat_cov, mat_corr
+    \end{lstlisting}
+    \begin{homeworkSection}{(i)}
+        The sample covariance matrix of the daily percentage returns of the indeces: (multiplied by 1 million then show 3 decimal places)
+        \begin{lstlisting}
+[[ 100.036   67.044   96.674   40.044   82.767   78.903   74.351   71.106   54.555]
+ [  67.044   58.162   71.286   38.014   65.292   61.375   59.632   52.867   41.986]
+ [  96.674   71.286  135.876   45.364   86.149   83.05    77.463   60.147   57.457]
+ [  40.044   38.014   45.364   44.841   43.203   40.1     39.365   34.6     30.428]
+ [  82.767   65.292   86.149   43.203   82.372   74.457   71.375   73.05    54.008]
+ [  78.903   61.375   83.05    40.1     74.457   69.774   66.942   61.8     46.546]
+ [  74.351   59.632   77.463   39.365   71.375   66.942   65.169   58.658   43.657]
+ [  71.106   52.867   60.147   34.6     73.05    61.8     58.658  103.964   50.009]
+ [  54.555   41.986   57.457   30.428   54.008   46.546   43.657   50.009  110.842]]
+        \end{lstlisting}
+        The corresponding sample corelation matrix:
+        \begin{lstlisting}
+[[ 1.     0.879  0.829  0.598  0.912  0.944  0.921  0.697  0.518]
+ [ 0.879  1.     0.802  0.744  0.943  0.963  0.969  0.68   0.523]
+ [ 0.829  0.802  1.     0.581  0.814  0.853  0.823  0.506  0.468]
+ [ 0.598  0.744  0.581  1.     0.711  0.717  0.728  0.507  0.432]
+ [ 0.912  0.943  0.814  0.711  1.     0.982  0.974  0.789  0.565]
+ [ 0.944  0.963  0.853  0.717  0.982  1.     0.993  0.726  0.529]
+ [ 0.921  0.969  0.823  0.728  0.974  0.993  1.     0.713  0.514]
+ [ 0.697  0.68   0.506  0.507  0.789  0.726  0.713  1.     0.466]
+ [ 0.518  0.523  0.468  0.432  0.565  0.529  0.514  0.466  1.   ]]
+        \end{lstlisting}
+        The sample covariance matrix for daily log returns:
+        \begin{lstlisting}
+[[ 100.4     67.27    97.249   40.152   83.128   79.212   74.627   71.384   54.597]
+ [  67.27    58.323   71.573   38.091   65.533   61.576   59.82    53.059   41.992]
+ [  97.249   71.573  136.667   45.459   86.589   83.46    77.815   60.39    57.572]
+ [  40.152   38.091   45.459   44.9     43.337   40.201   39.465   34.758   30.555]
+ [  83.128   65.533   86.589   43.337   82.724   74.761   71.652   73.328   54.041]
+ [  79.212   61.576   83.46    40.201   74.761   70.033   67.178   62.037   46.575]
+ [  74.627   59.82    77.815   39.465   71.652   67.178   65.387   58.877   43.665]
+ [  71.384   53.059   60.39    34.758   73.328   62.037   58.877  104.159   50.058]
+ [  54.597   41.992   57.572   30.555   54.041   46.575   43.665   50.058  111.05 ]]
+        \end{lstlisting}
+        The sample correlation matrix for daily log returns:
+        \begin{lstlisting}
+[[ 1.     0.879  0.83   0.598  0.912  0.945  0.921  0.698  0.517]
+ [ 0.879  1.     0.802  0.744  0.943  0.963  0.969  0.681  0.522]
+ [ 0.83   0.802  1.     0.58   0.814  0.853  0.823  0.506  0.467]
+ [ 0.598  0.744  0.58   1.     0.711  0.717  0.728  0.508  0.433]
+ [ 0.912  0.943  0.814  0.711  1.     0.982  0.974  0.79   0.564]
+ [ 0.945  0.963  0.853  0.717  0.982  1.     0.993  0.726  0.528]
+ [ 0.921  0.969  0.823  0.728  0.974  0.993  1.     0.713  0.512]
+ [ 0.698  0.681  0.506  0.508  0.79   0.726  0.713  1.     0.465]
+ [ 0.517  0.522  0.467  0.433  0.564  0.528  0.512  0.465  1.   ]]
+        \end{lstlisting}
+        Compare: slight difference between covariance matrices within $1$, between correlation matrices within $10^{-3}$.
+    \end{homeworkSection}
+    \begin{homeworkSection}{(ii)}
+        The sample covariance matrix of the weekly percentage returns of the indeces:
+        \begin{lstlisting}
+[[ 472.156  311.098  405.204  174.564  400.558  369.005  354.473  417.483  379.165]
+ [ 311.098  271.755  298.043  155.098  307.855  282.528  277.279  288.047  272.618]
+ [ 405.204  298.043  549.629  184.198  354.593  342.675  318.596  292.357  323.415]
+ [ 174.564  155.098  184.198  184.696  179.838  169.515  162.684  157.188  164.829]
+ [ 400.558  307.855  354.593  179.838  404.847  352.153  341.254  420.45   364.174]
+ [ 369.005  282.528  342.675  169.515  352.153  320.149  310.003  345.018  312.412]
+ [ 354.473  277.279  318.596  162.684  341.254  310.003  304.292  333.379  294.753]
+ [ 417.483  288.047  292.357  157.188  420.45   345.018  333.379  645.487  357.972]
+ [ 379.165  272.618  323.415  164.829  364.174  312.412  294.753  357.972  570.861]]
+        \end{lstlisting}
+        The corresponding sample corelation matrix:
+        \begin{lstlisting}
+[[ 1.     0.868  0.795  0.591  0.916  0.949  0.935  0.756  0.73 ]
+ [ 0.868  1.     0.771  0.692  0.928  0.958  0.964  0.688  0.692]
+ [ 0.795  0.771  1.     0.578  0.752  0.817  0.779  0.491  0.577]
+ [ 0.591  0.692  0.578  1.     0.658  0.697  0.686  0.455  0.508]
+ [ 0.916  0.928  0.752  0.658  1.     0.978  0.972  0.822  0.758]
+ [ 0.949  0.958  0.817  0.697  0.978  1.     0.993  0.759  0.731]
+ [ 0.935  0.964  0.779  0.686  0.972  0.993  1.     0.752  0.707]
+ [ 0.756  0.688  0.491  0.455  0.822  0.759  0.752  1.     0.59 ]
+ [ 0.73   0.692  0.577  0.508  0.758  0.731  0.707  0.59   1.   ]]
+        \end{lstlisting}
+        The sample covariance matrix for weekly log returns:
+        \begin{lstlisting}
+[[ 469.054  308.971  406.473  173.49   397.631  366.859  352.062  412.186  375.063]
+ [ 308.971  269.846  297.68   154.142  305.898  280.934  275.516  284.464  269.219]
+ [ 406.473  297.68   552.808  184.453  354.65   343.462  318.826  290.193  321.019]
+ [ 173.49   154.142  184.453  183.75   178.502  168.686  161.666  154.738  162.31 ]
+ [ 397.631  305.898  354.65   178.502  402.235  350.156  339.091  415.894  360.272]
+ [ 366.859  280.934  343.462  168.686  350.156  318.703  308.319  340.815  308.794]
+ [ 352.062  275.516  318.826  161.666  339.091  308.319  302.411  329.203  290.86 ]
+ [ 412.186  284.464  290.193  154.738  415.894  340.815  329.203  639.595  353.58 ]
+ [ 375.063  269.219  321.019  162.31   360.272  308.794  290.86   353.58   570.729]]
+        \end{lstlisting}
+        The sample correlation matrix for weekly log returns:
+        \begin{lstlisting}
+[[ 1.     0.868  0.798  0.591  0.915  0.949  0.935  0.753  0.725]
+ [ 0.868  1.     0.771  0.692  0.928  0.958  0.964  0.685  0.686]
+ [ 0.798  0.771  1.     0.579  0.752  0.818  0.78   0.488  0.572]
+ [ 0.591  0.692  0.579  1.     0.657  0.697  0.686  0.451  0.501]
+ [ 0.915  0.928  0.752  0.657  1.     0.978  0.972  0.82   0.752]
+ [ 0.949  0.958  0.818  0.697  0.978  1.     0.993  0.755  0.724]
+ [ 0.935  0.964  0.78   0.686  0.972  0.993  1.     0.749  0.7  ]
+ [ 0.753  0.685  0.488  0.451  0.82   0.755  0.749  1.     0.585]
+ [ 0.725  0.686  0.572  0.501  0.752  0.724  0.7    0.585  1.   ]]
+        \end{lstlisting}
+        Compare: slight difference between covariance matrices within $10^1$, between correlation matrices within $10^{-2}$.
+    \end{homeworkSection}
+    \begin{homeworkSection}{(iii)}
+        The sample covariance matrix of the monthly percentage returns of the indeces
+        \begin{lstlisting}
+[[  5.22613000e+02   6.52471000e+02   7.67191000e+02   1.76086000e+02
+    5.82136000e+02   5.25557000e+02   5.45466000e+02   5.62990000e+01
+    6.32730000e+01]
+ [  6.52471000e+02   8.20539000e+02   9.20218000e+02   2.00726000e+02
+    7.41528000e+02   6.62624000e+02   6.87928000e+02   1.45713000e+02
+    5.06490000e+01]
+ [  7.67191000e+02   9.20218000e+02   2.40318400e+03   2.49390000e+02
+    7.37085000e+02   7.32447000e+02   6.85305000e+02  -3.92243000e+02
+    4.77142000e+02]
+ [  1.76086000e+02   2.00726000e+02   2.49390000e+02   1.42265000e+02
+    1.47259000e+02   1.51609000e+02   1.66419000e+02  -1.96005000e+02
+    7.88350000e+01]
+ [  5.82136000e+02   7.41528000e+02   7.37085000e+02   1.47259000e+02
+    6.92667000e+02   6.09023000e+02   6.36799000e+02   1.91163000e+02
+   -3.28830000e+01]
+ [  5.25557000e+02   6.62624000e+02   7.32447000e+02   1.51609000e+02
+    6.09023000e+02   5.43765000e+02   5.67473000e+02   7.44930000e+01
+   -1.63200000e+00]
+ [  5.45466000e+02   6.87928000e+02   6.85305000e+02   1.66419000e+02
+    6.36799000e+02   5.67473000e+02   6.00143000e+02   5.09470000e+01
+   -5.01310000e+01]
+ [  5.62990000e+01   1.45713000e+02  -3.92243000e+02  -1.96005000e+02
+    1.91163000e+02   7.44930000e+01   5.09470000e+01   1.48489800e+03
+   -1.68390000e+01]
+ [  6.32730000e+01   5.06490000e+01   4.77142000e+02   7.88350000e+01
+   -3.28830000e+01  -1.63200000e+00  -5.01310000e+01  -1.68390000e+01
+    5.82484000e+02]]
+        \end{lstlisting}
+        The corresponding sample corelation matrix:
+        \begin{lstlisting}
+[[ 1.     0.996  0.685  0.646  0.968  0.986  0.974  0.064  0.115]
+ [ 0.996  1.     0.655  0.587  0.984  0.992  0.98   0.132  0.073]
+ [ 0.685  0.655  1.     0.427  0.571  0.641  0.571 -0.208  0.403]
+ [ 0.646  0.587  0.427  1.     0.469  0.545  0.57  -0.426  0.274]
+ [ 0.968  0.984  0.571  0.469  1.     0.992  0.988  0.188 -0.052]
+ [ 0.986  0.992  0.641  0.545  0.992  1.     0.993  0.083 -0.003]
+ [ 0.974  0.98   0.571  0.57   0.988  0.993  1.     0.054 -0.085]
+ [ 0.064  0.132 -0.208 -0.426  0.188  0.083  0.054  1.    -0.018]
+ [ 0.115  0.073  0.403  0.274 -0.052 -0.003 -0.085 -0.018  1.   ]]
+        \end{lstlisting}
+        The sample covariance matrix for monthly log returns:
+        \begin{lstlisting}
+[[  526.53    657.246   767.206   173.003   590.047   530.131   551.248    70.067    59.119]
+ [  657.246   826.617   920.074   196.427   751.563   668.259   695.011   162.352    44.837]
+ [  767.206   920.074  2319.89    249.781   743.912   733.515   692.423  -355.846   457.48 ]
+ [  173.003   196.427   249.781   138.707   145.146   149.207   163.998  -185.547    77.55 ]
+ [  590.047   751.563   743.912   145.146   705.064   617.134   646.112   204.788   -36.801]
+ [  530.131   668.259   733.515   149.207   617.134   548.464   573.24     88.39     -5.143]
+ [  551.248   695.011   692.423   163.998   646.112   573.24    606.755    66.388   -52.953]
+ [   70.067   162.352  -355.846  -185.547   204.788    88.39     66.388  1402.348    -7.745]
+ [   59.119    44.837   457.48     77.55    -36.801    -5.143   -52.953    -7.745   589.212]]
+        \end{lstlisting}
+        The sample correlation matrix for weekly log returns:
+        \begin{lstlisting}
+[[ 1.     0.996  0.694  0.64   0.968  0.986  0.975  0.082  0.106]
+ [ 0.996  1.     0.664  0.58   0.984  0.992  0.981  0.151  0.064]
+ [ 0.694  0.664  1.     0.44   0.582  0.65   0.584 -0.197  0.391]
+ [ 0.64   0.58   0.44   1.     0.464  0.541  0.565 -0.421  0.271]
+ [ 0.968  0.984  0.582  0.464  1.     0.992  0.988  0.206 -0.057]
+ [ 0.986  0.992  0.65   0.541  0.992  1.     0.994  0.101 -0.009]
+ [ 0.975  0.981  0.584  0.565  0.988  0.994  1.     0.072 -0.089]
+ [ 0.082  0.151 -0.197 -0.421  0.206  0.101  0.072  1.    -0.009]
+ [ 0.106  0.064  0.391  0.271 -0.057 -0.009 -0.089 -0.009  1.   ]]
+        \end{lstlisting}
+        Compare: slight difference between covariance matrices within $10^2$, between correlation matrices within $10^{-1}$.
+    \end{homeworkSection}
+    \begin{homeworkSection}{(iv)}
+        The differences between the sample covariance and correlation matrices for daily, weekly, and monthly returns become larger and larger when observing the difference between covariance matrices changing from $10^0$ to $10^2$, and the difference between correlation matrices changing from $10^{-3}$ to $10^{-1}$.
+    \end{homeworkSection}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 10
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    \begin{homeworkSection}{(i)}
+        The eigenvalues:
+        \begin{equation}
+            \lambda_1 = -1, \lambda_2 = -3, \lambda_3 = 2
+        \end{equation}
+        The corresponding normalized eigenvectors (8 decimal places):
+        \begin{align}
+            v_1 &= (0,0,1)^T \\ 
+            v_2 &= (0,0.70710678,-0.70710678)^T \\
+            v_3 &= (0.96225045, 0.19245009, -0.19245009)^T
+        \end{align}
+    \end{homeworkSection}
+    \begin{homeworkSection}{(ii)}
+        The eigenvalues:
+        \begin{equation}
+            \lambda_1 = -2, \lambda_2 = 1, \lambda_3 = 3
+        \end{equation}
+        The corresponding normalized eigenvectors (8 decimal places):
+        \begin{align}
+            v_1 &= (1,0,0)^T \\ 
+            v_2 &= (-0.31622777,0.9486833,0)^T \\
+            v_3 &= (0.27216553, 0.68041382, 0.68041382)^T
+        \end{align}
+    \end{homeworkSection}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 11
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    Suppose $\lambda$ is the eigenvalue of $A$ and $v$ is the corresponded eigenvector, then $Av = \lambda v$, on the other hand,
+    \begin{equation}
+        Av = A^2v = A(Av) = A(\lambda v) = \lambda Av = \lambda \lambda v = \lambda^2 v
+    \end{equation}
+    Therefore we have
+    \begin{equation}
+        \lambda v = \lambda^2 v
+    \end{equation}
+    since $v$ is a non-zero vector, we can conclude that $\lambda$ is either 0 or 1.
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 12
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    Suppose $\lambda$ is the eigenvalue of $A$ and $v$ is the corresponded eigenvector, then $Av = \lambda v$, on the other hand,
+    \begin{equation}
+        A^n v = A^{n-1} (Av) = \lambda A^{n-1}v = \dots = \lambda^n v
+    \end{equation}
+    since $A^n = 0$, then with the condition that $v$ is a non-zero vector,
+    \begin{equation}
+        \lambda^n = 0
+    \end{equation}
+    so we can conclude that $\lambda$ must be equal to 0.
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 13
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    \begin{homeworkSection}{(i)}
+        If $v\neq0$, the number of non-zero eigenvalues is 1. Think about the rows of $vv^t$ where $v^t=(v_1,\dots,v_n)$. The first row is $v_1v^t$, the second row is $v_2v^t$, etc. so the rows are all multiples of $v^t$. Therefore the rank of $vv^t$ is 1, the number of non-zero eigenvalues is 1. \\
+        If $v = 0$, then $vv^t$ is a zero matrix, the number of non-zero eigenvalues is 0.
+    \end{homeworkSection}
+    \begin{homeworkSection}{(ii)}
+        Assume $v\neq0$. Then $v$ is an eigenvector with eigenvalue $|v|^2>0$, since 
+        \begin{equation}
+            (vv^t)v=v(v^tv)=v|v|^2=|v|^2v
+        \end{equation}
+        and any nonzero vector $x$ in the orthogonal complement of $v$ (which is of dimension $n-1$) is an eigenvector with eigenvalue zero, since 
+        \begin{equation}
+            (vv^t)x=v(v^tx)=v(vx)=v0=\textbf{0}=0x.
+        \end{equation}
+        If $v = 0$, then $vv^t$ is a zero matrix, all the eigenvalues are 0 and the eigenvectors can be any non-zero vectors.
+    \end{homeworkSection}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 14
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    Suppose the matrix given is $A$, to derive its eigenvalues is to solve
+    \begin{equation}
+        det(\lambda I - A) = det\left| \begin{array} {cccc}
+        \lambda - d & -1        & \dots & -1    \\
+        -1          & \lambda-d & \dots & -1    \\
+        \dots       & \dots     & \dots & \dots \\
+        -1          & -1        & \dots & \lambda - d
+        \end{array}
+        \right|
+    \end{equation}
+    If we add up all the rows and divide it by $\lambda-d-(n-1)$, we will generate a row with all values being $1$. By add this row to each row in the matrix above, we derive a diagonal matrix
+    \begin{equation}
+        det(\lambda I - A) = (\lambda-d-n+1)det\left| \begin{array} {cccc}
+        \lambda-d+1 & 0           & \dots   & 0     \\
+        0           & \lambda-d+1 & \dots   & 0     \\
+        \dots       & \dots       & \dots   & \dots \\
+        0           & 0           & \dots   & 1
+        \end{array}
+        \right| = (\lambda-d+1)^{n-1}(\lambda-d-n+1)
+    \end{equation}
+    Therefore the eigenvalues are 
+    \begin{equation}
+        \lambda_1 = \lambda_2 = \dots = \lambda_{n-1} = d-1, \lambda_n = d+n-1
+    \end{equation}
+    When the eigenvalue is $\lambda = d-1$, the eigenvectors are
+    \begin{align}
+        v_1 &= (1,-1,0,0,\dots,0) \\
+        v_2 &= (1,0,-1,0,\dots,0) \\
+        v_3 &= (1,0,0,-1,\dots,0) \\
+        &\dots \\
+        v_{n-1} &= (1,0,0,0,\dots,-1)
+    \end{align}
+    When the eigenvalue is $\lambda = d+n-1$, the eigenvectors are
+    \begin{align}
+        v_n = (1,1,1,\dots,1)
+    \end{align}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 15
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    \begin{homeworkSection}{(i)}
+        Let
+        \begin{equation}
+            M' = \left( \begin{array}{cc} A & B \\ C & D \end{array}\right)
+        \end{equation}
+        where A, B, C, and D may be real or complex numbers. Furthermore, let $\tau = A + D$ be the trace of $M$, and $\delta = AD - BC$ be its determinant. Let $s$ be such that $s^2 = \delta$, and $t$ be such that $t^2 = \tau + 2s$. That is,
+        \begin{equation}
+            s = \pm\sqrt{\delta} \quad \quad t = \pm \sqrt{\tau + 2 s}
+        \end{equation}
+        Then, if $t \neq 0$, a square root of $M$ is
+        \begin{equation}
+            R = \frac{1}{t} \left( \begin{array}{cc} A + s & B \\ C & D + s \end{array}\right)
+        \end{equation}
+        Indeed, the square of R is
+        \begin{equation}
+            \begin{array}{rcl}
+              R^2 
+                &=&
+                \displaystyle \frac{1}{t^2} 
+                  \left( \begin{array}{cc} (A + s)^2 + B C & (A + s)B + B(D + s) \\ C(A + s) + (D + s)C & (D + s)^2 + B C \end{array}\right)\\[3ex]
+              {}
+                &=&
+                \displaystyle \frac{1}{A + D + 2 s} 
+                  \left( \begin{array}{cc} A(A + D + 2s) & (A + D + 2s)B \\ C(A + D + 2 s) & D(A + D + 2 s) \end{array}\right) \;=\;
+              M
+            \end{array}
+        \end{equation}
+        The square root formula of matrix to our problem, the result is (8 decimal places):
+        \begin{equation}
+            M = \left( \begin{array}{cc}
+            1.28989795 & -0.5797959 \\
+            -0.5797959 & 2.15959179
+            \end{array} \right)
+        \end{equation}
+    \end{homeworkSection}
+    \begin{homeworkSection}{(ii)}
+        One solution is just using Cholesky decomposition, which generate the result as
+        \begin{equation}
+            M = \left( \begin{array}{cc}
+            \sqrt{2} & -\sqrt{2} \\
+            0 & \sqrt{3}
+            \end{array} \right) 
+            = \left( \begin{array}{cc}
+            1.41421356 & -1.41421356 \\
+            0 & 1.73205081
+            \end{array} \right) 
+        \end{equation}
+        It's easy to verify that
+        \begin{equation}
+            M^tM = \left( \begin{array}{cc}
+            \sqrt{2} & 0 \\
+            -\sqrt{2} & \sqrt{3}
+            \end{array} \right)\left( \begin{array}{cc}
+            \sqrt{2} & -\sqrt{2} \\
+            0 & \sqrt{3}
+            \end{array} \right) 
+            = \left( \begin{array}{cc}
+            2 & -2 \\
+            -2 & 5
+            \end{array} \right) 
+        \end{equation}
+    \end{homeworkSection}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 16
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    \begin{homeworkSection}{(i)}
+        Define
+        \begin{equation}
+            C = \left( \begin{array} {cc} xI_n & A \\ B & I_n \end{array} \right),
+            D = \left( \begin{array} {cc} I_n & 0 \\ -B & xI_n \end{array} \right),
+        \end{equation}
+        we have
+        \begin{equation}
+            det(CD) = x^n|I_n - AB|, det(DC) = x^n|I_n - BA|
+        \end{equation}
+        and we know $det(CD)=det(DC)$ then A,B have same characteristic polynomials. \\
+        Actually there is a much easier proof, since $A$ is nonsingular then $A$ is invertible, we have
+        \begin{equation}
+            A^{-1}(AB)A=BA
+        \end{equation}
+        so $AB$ and $BA$ are similar, which implies (but is stronger than) $AB$ and $BA$ have the same characteristic polynomial.
+    \end{homeworkSection}
+    \begin{homeworkSection}{(ii)}
+        I didn't use the condition that $A$ is nonsingular in my first method to solve part(i), therefore it can be applied to solve this part too.
+    \end{homeworkSection}
+    \begin{homeworkSection}{(iii)}
+        Denote $C=AB, D=BA$,
+        \begin{equation}
+            tr(AB) = \sum_k C(k,k) = \sum_k \sum_i A(k,i)B(i,k) = \sum_i \sum_k B(i,k)A(k,i) = \sum_i D(i,i) = tr(BA)
+        \end{equation}
+    \end{homeworkSection}
+    \begin{homeworkSection}{(iv)}
+        According to the fact that the eigenvalues of a matrix are the roots of its characteristic polynomial. We've proved the matrices AB and BA have the same characteristic polynomial in part(ii), therefore their eigenvalues are the same.
+    \end{homeworkSection}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 17
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    As stated, the four vectors are
+    \begin{align}
+        v_1(i) &= \left[\sin(\frac{\pi}{5}), \sin(\frac{2\pi}{5}), \sin(\frac{3\pi}{5}), \sin(\frac{4\pi}{5}) \right] \\
+        v_2(i) &= \left[\sin(\frac{2\pi}{5}), \sin(\frac{4\pi}{5}), \sin(\frac{6\pi}{5}), \sin(\frac{8\pi}{5}) \right] \\
+        v_3(i) &= \left[\sin(\frac{3\pi}{5}), \sin(\frac{6\pi}{5}), \sin(\frac{9\pi}{5}), \sin(\frac{12\pi}{5}) \right] \\
+        v_4(i) &= \left[\sin(\frac{4\pi}{5}), \sin(\frac{8\pi}{5}), \sin(\frac{12\pi}{5}), \sin(\frac{16\pi}{5}) \right]
+    \end{align}
+    respectively. 
+    Then we have
+    \begin{equation}
+        v^tv = \left( \begin{array} {cccc}
+        2.5 & 0 & 0 & 0 \\
+        0 & 2.5 & 0 & 0 \\
+        0 & 0 & 2.5 & 0 \\
+        0 & 0 & 0 & 2.5
+        \end{array} \right)
+    \end{equation}
+    So
+    \begin{equation}
+        v_1^2 = v_2^2 = v_3^2 = v_4^2 = 2.5
+    \end{equation}
+    Therefore they are not of norm $1$. Also we can continue to verify that
+    \begin{equation}
+        v_1 \cdot v_2 = v_1 \cdot v_3 = v_1 \cdot v_4 = v_2 \cdot v_3 = v_2 \cdot v_4 = v_3 \cdot v_4 = 0
+    \end{equation}
+    they are orthagonal.
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 18
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    Denote the matrix given as $A$. Then matrix $A$ is weakly diagonally dominant if
+    \begin{equation}
+        |a_{ii}| \geq \sum_{j\neq i} |a_{ij}| \quad\text{for all } i, \,
+    \end{equation}
+    where $a_{ij}$ denotes the entry in the i-th row and j-th column. \\
+    Since
+    \begin{equation}
+        3 + 2 + 1 > |-1|+|-1|+2+1
+    \end{equation}
+    it is weakly diagonally dominant.\\
+    In addition, it is easy to verify that
+    \begin{equation}
+        det(A) = 0
+    \end{equation}
+    so it is singular.
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 19
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    To derive the eigenvalues of $A$, we have
+    \begin{equation}
+        det(\lambda I - A) = \det \left| \begin{array}{ccccc}
+        \lambda-2 & 0        & 0  & \dots & 0 \\
+        -1         & \lambda-2 & 0 & \dots & 0 \\
+        \dots     &           &    &           \\
+        0         & 0         & \dots  & -1 & \lambda-2
+        \end{array}\right| = (\lambda-2)^n = 0
+    \end{equation} 
+    Therefore,
+    \begin{equation}
+        \lambda_1 = \lambda_2 = \dots = \lambda_n = 2
+    \end{equation}
+    The corresponded eigenvector is
+    \begin{equation}
+        v = (0,0,\dots,0,1)^T
+    \end{equation}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 20
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+    This is similar to the previous problem,
+    \begin{equation}
+        det(\lambda I - A) = \det \left| \begin{array}{ccccc}
+        \lambda-a & -b        & 0  & \dots & 0 \\
+        0        & \lambda-a & -b  & \dots & 0 \\
+        0         & 0        & \lambda-b & \dots & 0 \\
+        \dots     &           &    &         & -b    \\
+        0         & 0         & \dots  & 0 & \lambda-a
+        \end{array}\right| = (\lambda-a)^n = 0
+    \end{equation}
+    Therefore,
+    \begin{equation}
+        \lambda_1 = \lambda_2 = \dots = \lambda_n = a
+    \end{equation}
+    If $b\neq0$, the corresponded eigenvector is
+    \begin{equation}
+        (1,0,\dots,0)^t
+    \end{equation}
+    If $b = 0$, any nonzero vector is an eigenvector.
+\end{homeworkProblem}
+
+\end{document}
